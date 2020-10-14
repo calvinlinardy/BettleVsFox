@@ -1,5 +1,4 @@
-﻿using Boo.Lang.Environments;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,7 @@ public class Player : MonoBehaviour
 {
     // Configuration parameters
     [SerializeField] float movementSpeed = 4f;
+    [SerializeField] float jumpSpeed = 3f;
 
     // State variables
     bool isAlive = true;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     {
         Run();
         FlipSprite();
+        Jump();
+        Debug.Log(myRigidBody.velocity);
     }
 
     private void Run()
@@ -34,6 +37,18 @@ public class Player : MonoBehaviour
         var deltaX = Input.GetAxis("Horizontal") * movementSpeed;
         Vector2 playerVelocity = new Vector2(deltaX, myRigidBody.velocity.y);
         myRigidBody.velocity = playerVelocity;
+
+        bool hasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
+        myAnimator.SetBool("Running", hasHorizontalSpeed);
+    }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+            myRigidBody.velocity += jumpVelocityToAdd;
+        }
     }
 
     private void FlipSprite()
