@@ -18,24 +18,28 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TurnAroundAfterColliding();
+        Movement();
     }
 
     private void Movement()
     {
-        myRigidBody.velocity = new Vector2(movementSpeed, myRigidBody.velocity.y);
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+        if (IsFacingRight())
         {
-            movementSpeed *= -1;
-            transform.localScale = new Vector2(Mathf.Sign(movementSpeed), 1f);
+            myRigidBody.velocity = new Vector2(movementSpeed, myRigidBody.velocity.y);
         }
-    }
-
-    private void TurnAroundAfterColliding()
-    {
-        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+        else
         {
             myRigidBody.velocity = new Vector2(-movementSpeed, myRigidBody.velocity.y);
         }
+    }
+
+    private bool IsFacingRight()
+    {
+        return transform.localScale.x > 0;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        transform.localScale = new Vector2(-(Mathf.Sign(myRigidBody.velocity.x)), 1f);
     }
 }

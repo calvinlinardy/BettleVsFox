@@ -33,10 +33,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) { return; }
         Run();
         FlipSprite();
         Jump();
         ClimbLadder();
+        Die();
     }
 
     private void Run()
@@ -49,13 +51,31 @@ public class Player : MonoBehaviour
         myAnimator.SetBool("Running", hasHorizontalSpeed);
     }
 
+    private void Die()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Water")))
+        {
+            isAlive = false;
+            myAnimator.SetTrigger("Die");
+            myRigidBody.velocity = new Vector2(0f, 8f);
+            GetComponent<Collider2D>().enabled = false;
+            DestroyAfterSec(3f);
+        }
+    }
+
+    IEnumerator DestroyAfterSec(float timeSeconds)
+    {
+        yield return new WaitForSeconds(timeSeconds);
+        Destroy(gameObject);
+    }
+
     private void ClimbLadder()
     {
-        if(!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) 
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             myAnimator.SetBool("Climbing", false);
             myRigidBody.gravityScale = gravityScaleAtStart;
-            return; 
+            return;
         }
 
         float deltaY = Input.GetAxis("Vertical") * climbSpeed;
