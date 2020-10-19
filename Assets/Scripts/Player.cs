@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
             myRigidBody.velocity = new Vector2(0f, 8f);
             GetComponent<Collider2D>().enabled = false;
             StartCoroutine(DestroyAfterSec(3f));
+            FindObjectOfType<GameSession>().DeathProcess();
         }
     }
 
