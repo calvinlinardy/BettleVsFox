@@ -59,14 +59,14 @@ public class Player : MonoBehaviour
             myAnimator.SetTrigger("Die");
             myRigidBody.velocity = new Vector2(0f, 8f);
             GetComponent<Collider2D>().enabled = false;
-            DestroyAfterSec(3f);
+            StartCoroutine(DestroyAfterSec(3f));
         }
     }
 
     IEnumerator DestroyAfterSec(float timeSeconds)
     {
-        yield return new WaitForSeconds(timeSeconds);
-        Destroy(gameObject);
+        yield return new WaitForSecondsRealtime(timeSeconds);
+        Destroy(this.gameObject);
     }
 
     private void ClimbLadder()

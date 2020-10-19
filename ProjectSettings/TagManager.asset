@@ -20,7 +20,7 @@ TagManager:
   - Enemy Border
   - Enemy
   - Water
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3911030665
+    locked: 0
+  - name: Interactable
+    uniqueID: 3227048707
     locked: 0
   - name: Player
     uniqueID: 2200087365
