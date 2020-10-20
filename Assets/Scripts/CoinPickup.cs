@@ -4,25 +4,14 @@ using UnityEngine;
 
 public class CoinPickup : MonoBehaviour
 {
+    [SerializeField] AudioClip coinSFX;
 
-    private void OnTriggerEnter2D(Player player)
+    private void OnTriggerEnter2D(Collider2D player)
     {
-        Destroy(gameObject);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(gameObject);
+        if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            AudioSource.PlayClipAtPoint(coinSFX, Camera.main.transform.position);
+            Destroy(gameObject);
+        }
     }
 }
