@@ -36,7 +36,6 @@ public class GameSession : MonoBehaviour
 
     private void ResetGameSession()
     {
-        Destroy(gameObject);
         StartCoroutine(LoadSceneAfterSecAndDestroy(0, 3f));
     }
 
