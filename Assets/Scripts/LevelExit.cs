@@ -24,6 +24,7 @@ public class LevelExit : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        AudioManager.instance.PlaySFX(3);
     }
 
     IEnumerator LoadNextLevel()

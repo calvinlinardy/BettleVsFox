@@ -20,6 +20,7 @@ public class Menu : MonoBehaviour
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        AudioManager.instance.PlaySFX(4);
     }
 
     public void Quit()
@@ -32,5 +33,6 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         Destroy(FindObjectOfType<GameSession>().gameObject);
+        AudioManager.instance.PlaySFX(4);
     }
 }

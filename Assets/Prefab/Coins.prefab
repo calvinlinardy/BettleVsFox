@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bd18f15bed347469e8381a9808b2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinSFX: {fileID: 8300000, guid: 8ac8278258f88de4e8ef8a68ad65d581, type: 3}
+  coinSFX: {fileID: 8300000, guid: 05f0bddb2b0e78b4086c2506b0616748, type: 3}
+  coinScore: 100
 --- !u!82 &3043785889164732022
 AudioSource:
   m_ObjectHideFlags: 0

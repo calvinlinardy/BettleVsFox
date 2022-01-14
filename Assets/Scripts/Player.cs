@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
     {
         if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Water")))
         {
+            AudioManager.instance.PlaySFX(1);
             isAlive = false;
             myAnimator.SetTrigger("Die");
             myRigidBody.velocity = new Vector2(0f, 8f);
@@ -94,6 +95,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            AudioManager.instance.PlaySFX(2);
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             myRigidBody.velocity += jumpVelocityToAdd;
         }
