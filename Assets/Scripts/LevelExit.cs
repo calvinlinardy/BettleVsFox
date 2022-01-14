@@ -17,8 +17,13 @@ public class LevelExit : MonoBehaviour
     {
         if (levelExitCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
-            StartCoroutine(LoadNextLevel());
+            LoadNextScene();
         }
+    }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     IEnumerator LoadNextLevel()

@@ -11,7 +11,7 @@ public class CoinPickup : MonoBehaviour
     {
         if (player.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            AudioSource.PlayClipAtPoint(coinSFX, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(coinSFX, Camera.main.transform.position, 0.5f);
             FindObjectOfType<GameSession>().AddToScore(coinScore);
             Destroy(gameObject);
         }
